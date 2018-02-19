@@ -18,6 +18,7 @@ import java.util.Hashtable;
 import java.util.Set;
 import observer.ClicObserver;
 import observer.ObservableElement;
+import observer.ReadyObserver;
 import observer.UpdatedObserver;
 
 /**
@@ -44,24 +45,10 @@ public class InformationTable {
     private ArrayList<Tag> informationTable;
     ObservableElement cjsObserver1 = new ObservableElement();
     UpdatedObserver updatedEvent1 = new UpdatedObserver(cjsObserver1);
-    Tag tag1 = new Button(); 
-    public static Tag tag2 = new Button();
-    Tag tag3 = new Input();
-    Tag tag4 = new Input();
-    Tag tag5 = new Table();  
+    ReadyObserver readyEvent1 = new ReadyObserver(cjsObserver1);
 
-    private InformationTable() {
+    public InformationTable() {
         informationTable = new ArrayList<>();
-        tag1  = new Color(tag1, "yellow");
-        tag2  = new Color(tag2, "red");
-        tag3  = new Color(tag3, "blue");
-        tag4  = new Color(tag4, "green");
-        tag5  = new Color(tag5, "white");
-        informationTable.add(tag1);
-        informationTable.add(tag2);
-        informationTable.add(tag3);
-        informationTable.add(tag4);
-        informationTable.add(tag5);
     }
 
     public static InformationTable getInstance() {
@@ -74,14 +61,32 @@ public class InformationTable {
     }
 
     public void DrawTag(Tag tag) {
-
+        int i = informationTable.indexOf(tag);
+        System.out.println("Tag: "+informationTable.get(i).type()+" Properties: "+informationTable.get(i).getDescription());
+        readyEvent1.update("listo", tag.type(), tag.getDescription());
     }
 
-    public Tag Update(Tag tag, String propiedad) {
-        int i = getInformationTable().indexOf(tag);
-        tag = new Color(tag, propiedad);
-        getInformationTable().set(i, tag);
-        cjsObserver1.eventDescription("modificado", tag.type(), tag.getDescription());
+    public Tag Update(Tag tag, String propiedad, String valor) {
+        int i = informationTable.indexOf(tag);
+        if (propiedad.equalsIgnoreCase("color")){
+            tag = new Color(tag, valor);
+        }else if(propiedad.equalsIgnoreCase("format")){
+            tag = new Format(tag, valor);
+        }
+        informationTable.set(i, tag);
+        updatedEvent1.update("modificado", tag.type(), tag.getDescription());
         return tag;
+    }
+
+    public void add(Tag tag) {
+        informationTable.add(tag);
+        readyEvent1.update("listo", tag.type(), tag.getDescription());
+    }
+    
+    public void DrawPage(){
+        for (Tag tag : informationTable) {
+            System.out.println("Tag: "+tag.type()+" Properties: "+tag.getDescription());
+        }
+        readyEvent1.update("listo", "Documento", "Page 1");
     }
 }

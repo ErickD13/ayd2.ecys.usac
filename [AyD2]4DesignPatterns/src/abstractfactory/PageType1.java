@@ -5,6 +5,8 @@
  */
 package abstractfactory;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author erick
@@ -19,6 +21,7 @@ public class PageType1 extends Page {
 
     @Override
     void prepare() {
+        //tags = new ArrayList<>();
         System.out.println("Preparing " + path);
         tags = this.elementFactory.createTags();
     }

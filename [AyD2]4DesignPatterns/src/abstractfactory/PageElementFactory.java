@@ -6,13 +6,14 @@
 package abstractfactory;
 
 import decorator.Tag;
+import java.util.ArrayList;
 
 /**
  *
  * @author erick
  */
 public interface PageElementFactory {
-    public Tag[] createTags();
+    public ArrayList<Tag> createTags();
     //public Tag[] updateTags();
     //public Tag[] clickTags();
 }

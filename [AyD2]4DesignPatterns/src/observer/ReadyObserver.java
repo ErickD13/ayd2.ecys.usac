@@ -23,7 +23,7 @@ public class ReadyObserver implements Observer, DisplayElement {
     }
 
     @Override
-    public void update(String evento, String type, String id) {
+    public void update(String event, String type, String id) {
         if("listo".equalsIgnoreCase(event) && !"".equals(type) && !"".equals(id)){
             this.event = event;
             this.type = type;
@@ -37,9 +37,9 @@ public class ReadyObserver implements Observer, DisplayElement {
     @Override
     public void display(boolean flag) {
         if(flag){
-            System.out.println("Tipo: "+ type + " Id: " + id +". Listo");
+            System.out.println("*** Tipo: "+ type + " Id: " + id +". Listo ***");
         }else{
-            System.err.println("Unknow event");
+            System.err.println("*** Unknow event ***");
         }
     }
     

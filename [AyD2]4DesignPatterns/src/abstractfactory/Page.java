@@ -6,6 +6,7 @@
 package abstractfactory;
 
 import decorator.Tag;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,21 +15,21 @@ import decorator.Tag;
 public abstract class Page {
 
     String path;
-    Tag tags[];
+    ArrayList<Tag> tags;
 
     abstract void prepare();
 
     /**
      * @return the path
      */
-    public String getRuta() {
+    public String getPath() {
         return path;
     }
 
     /**
      * @param path the path to set
      */
-    public void setRuta(String path) {
+    public void setPath(String path) {
         this.path = path;
     }
 
@@ -37,12 +38,15 @@ public abstract class Page {
         result.append("---- " + this.path + " ----\n");
 
         if (tags != null) {
-            for (int i = 0; i < tags.length; i++) {
+            /*for (int i = 0; i < tags.length; i++) {
                 result.append(tags[i].type()+": "+tags[i].getDescription());
                 if (i < tags.length - 1) {
                     result.append(". ");
                 }
                 result.append("\n");
+            }*/
+            for (Tag tag : tags) {
+                result.append("Tag: " + tag.type()+" Properties: "+tag.getDescription());
             }
             result.append("\n");
         }

@@ -20,7 +20,7 @@ public class BrowserType1 extends Browser {
         if (item.equals("PageType1")) {
 
             page = new PageType1(ingredientFactory);
-            page.setRuta("Page style 1, type 1");
+            page.setPath("Page style 1, type 1");
 
         }
         return page;

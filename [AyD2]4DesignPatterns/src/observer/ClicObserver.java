@@ -37,7 +37,7 @@ public class ClicObserver implements Observer, DisplayElement {
     @Override
     public void display(boolean flag) {
         if(flag){
-            System.out.println("Tipo: "+ type + " Id: " + id +". Cliqueado");
+            System.out.println("*** Tipo: "+ type + " Id: " + id +". Cliqueado ***");
         }else{
             System.err.println("Unknow event");
         }

@@ -15,7 +15,7 @@ public abstract class Browser {
 
     public Page cargarPage(String type) {
         Page page = createPage(type);
-        System.out.println("--- Creating a " + page.getRuta() + " ---");
+        System.out.println("--- Creating a " + page.getPath() + " ---");
         page.prepare();
         return page;
     }
